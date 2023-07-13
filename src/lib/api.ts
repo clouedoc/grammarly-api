@@ -23,7 +23,7 @@ export interface GrammarlyOptions {
   password?: string;
 
   auth?: RequiredAuth;
-  agent?: any
+  agent?: any;
 }
 
 /**
@@ -31,7 +31,7 @@ export interface GrammarlyOptions {
  */
 export class Grammarly {
   private connection!: WebSocket;
-  private dialect: 'american' | 'british';
+  private dialect!: 'american' | 'british';
 
   private get isEstablished(): boolean {
     return (
@@ -109,7 +109,9 @@ export class Grammarly {
    * @returns the initial response message
    * @throws {Object} if cookies are bad
    */
-  private async establish(dialect: 'american' | 'british' = 'british'): Promise<BaseMessage> {
+  private async establish(
+    dialect: 'american' | 'british' = 'british'
+  ): Promise<BaseMessage> {
     consola.debug('Re-establishing connection.');
 
     const { connection } = await connect(this.options.auth, this.options.agent);
@@ -117,7 +119,7 @@ export class Grammarly {
     this.connection = connection;
 
     this.connection.send(JSON.stringify(buildInitialMessage(dialect)));
-    this.dialect = dialect
+    this.dialect = dialect;
 
     consola.debug('Sent establishing message');
 
