@@ -15,6 +15,16 @@ npm i -S @stewartmcgown/grammarly-api
 
 Or download the repo and `npm run build`.
 
+## Development
+
+### Publishing a new version
+
+```bash
+yarn build
+# here: edit package.json with a new version number
+npm publish
+```
+
 ## Usage
 
 ### Analyse Text
@@ -54,8 +64,9 @@ This library uses a Promise-based return system, so you will receive all the cor
 ```
 
 There are two more optional arguments for `analyze`: `timeout` and `dialect`.
-* `timeout` is the number of milliseconds to wait before timing out. Defaults to 5000.
-* `dialect` is the dialect of English to use: `'american'` or `'british'`. Defaults to `'british'`.
+
+- `timeout` is the number of milliseconds to wait before timing out. Defaults to 5000.
+- `dialect` is the dialect of English to use: `'american'` or `'british'`. Defaults to `'british'`.
 
 ### Correct results
 
@@ -182,11 +193,11 @@ const premium = new Grammarly({
 
 Your own personal AuthTokens can be found by inspecting the Firefox extension and looking at the `Cookies` tab.
 
-
 #### Using a custom http Agent
 
 If you need to support your own proxy, you can define your own [agent (doc)](https://nodejs.org/api/http.html#http_new_agent_options) for the requests.
 ex:
+
 ```js
 import ProxyAgent from 'proxy-agent';
 

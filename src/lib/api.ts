@@ -44,6 +44,13 @@ export class Grammarly {
   constructor(private options: GrammarlyOptions = {}) {}
 
   /**
+   * Close the underlying WebSocket connection
+   */
+  public async close() {
+    this.connection.close();
+  }
+
+  /**
    * Analyse some text
    *
    * @param text text to analyse
@@ -114,7 +121,10 @@ export class Grammarly {
   ): Promise<BaseMessage> {
     consola.debug('Re-establishing connection.');
 
-    const { connection } = await connect(this.options.auth, this.options.agent);
+    const { connection } = await connect(
+      this.options.auth,
+      this.options.agent
+    );
 
     this.connection = connection;
 
